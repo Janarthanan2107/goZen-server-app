@@ -1,20 +1,34 @@
-Certainly! Here's the corrected version of the README.md file:
+Here's the corrected README.md file along with the suggested folder structure:
 
 ```markdown
-# React Project with Vite
+# GoZen Server App
 
-This is a simple React project bootstrapped with Vite, a fast build tool that significantly improves the development experience.
+This is the backend server application for the GoZen project.
 
-## Getting Started
+## Folder Structure
 
-### Prerequisites
+```
+goZen-server-app/
+  ├── controllers/
+  │   └── authController.js
+  │   └── userController.js
+  ├── routes/
+  │   └── authRoutes.js
+  │   └── userRoutes.js
+  ├── models/
+  │   └── User.js
+  ├── middleware/
+  │   └── validationMiddleware.js
+  ├── config/
+  │   └── middleware.js
+  │   └── dbConnection.js
+  ├── index.js
+  ├── package.json
+  ├── README.md
+  └── .env
+```
 
-Before running the project, make sure you have the following installed on your machine:
-
-- Node.js (v14 or newer)
-- npm (comes with Node.js) or yarn
-
-### Installation
+## Installation
 
 1. Clone the repository to your local machine:
 
@@ -40,7 +54,7 @@ Before running the project, make sure you have the following installed on your m
    yarn
    ```
 
-### Development
+## Development
 
 To start the development server:
 
@@ -48,11 +62,9 @@ To start the development server:
 npm start
 ```
 
-This will run your React application in development mode. Open [http://localhost:3000](http://localhost:3000) in your browser to view it.
+This will run your server in development mode.
 
-The page will automatically reload if you make edits. You will also see any lint errors in the console.
-
-### Production Build
+## Production Build
 
 To build your application for production:
 
@@ -60,40 +72,13 @@ To build your application for production:
 npm run build
 ```
 
-This will create an optimized build of your application in the `dist` directory.
-
-### Additional Commands
-
-- `npm run serve`: Serve the production build locally for testing.
-- `npm run lint`: Lint your code using ESLint.
-- `npm run format`: Format your code using Prettier.
-
-### Folder Structure
-
-The project structure might look something like this:
-
-```
-goZen-react-app/
-  ├── node_modules/
-  ├── public/
-  │   ├── index.html
-  │   └── ...
-  ├── src/
-  │   ├── components/
-  │   │   └── ...
-  │   ├── App.jsx
-  │   └── index.jsx
-  ├── .gitignore
-  ├── package.json
-  ├── README.md
-  └── vite.config.js
-```
-
-Feel free to organize your code differently based on your preferences or project requirements.
+This will create an optimized build of your application.
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
 ```
 
-I corrected the clone URL to match the provided repository URL `https://github.com/Janarthanan2107/goZen-server-app.git`, and I updated the project directory name in the file structure to `goZen-server-app` to match the provided repository name.
+This README.md file provides an overview of the project, its folder structure, installation instructions, and commands for development and production. Additionally, it includes a section for the license information. 
+
+The suggested folder structure organizes the project into directories such as `controllers`, `routes`, `models`, `middleware`, and `config` for better organization and separation of concerns. Adjustments can be made based on specific project requirements or preferences.
