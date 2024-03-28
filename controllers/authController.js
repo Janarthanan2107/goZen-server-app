@@ -1,8 +1,8 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const User = require('../models/User');
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import User from '../models/User.js';
 
-exports.login = async (req, res) => {
+export const login = async(req, res) => {
     const { username, password } = req.body;
 
     try {
@@ -28,11 +28,9 @@ exports.login = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
-};
+}
 
-// Other controller methods for authentication...
-
-exports.register = async (req, res) => {
+export const register = async(req, res) => {
     const { username, password } = req.body;
 
     try {
@@ -54,9 +52,9 @@ exports.register = async (req, res) => {
         console.error(error);
         res.status(500).json({ message: 'Internal server error' });
     }
-};
+}
 
-exports.logout = (req, res) => {
+export const logout = async(req, res) => {
     res.clearCookie('token');
     res.json({ message: 'Logout successful' });
-};
+}

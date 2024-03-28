@@ -1,15 +1,15 @@
-const User = require('../models/User');
+import User from '../models/User.js';
 
-exports.getAllUsers = async (req, res) => {
+export const getAllUsers = async (req, res) => {
     try {
         const users = await User.find();
         res.json(users);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+}
 
-exports.getUserById = async (req, res) => {
+export const getUserById = async (req, res) => {
     const userId = req.params.id;
     try {
         const user = await User.findById(userId);
@@ -20,9 +20,9 @@ exports.getUserById = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+}
 
-exports.createUser = async (req, res) => {
+export const createUser = async (req, res) => {
     const { username, password } = req.body;
 
     try {
@@ -40,9 +40,9 @@ exports.createUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+}
 
-exports.updateUser = async (req, res) => {
+export const updateUser = async (req, res) => {
     const userId = req.params.id;
     const { username, password } = req.body;
 
@@ -60,9 +60,9 @@ exports.updateUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+}
 
-exports.deleteUser = async (req, res) => {
+export const deleteUser = async (req, res) => {
     const userId = req.params.id;
 
     try {
@@ -77,4 +77,4 @@ exports.deleteUser = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
-};
+}

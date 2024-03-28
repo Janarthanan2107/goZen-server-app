@@ -1,9 +1,9 @@
-const morgan = require('morgan');
-const helmet = require('helmet');
-const cors = require('cors');
+import morgan from 'morgan';
+import helmet from 'helmet';
+import cors from 'cors';
 
-module.exports = function(app) {
+export default function configureMiddleware(app) {
     app.use(morgan('combined'));
     app.use(helmet());
     app.use(cors());
-};
+}

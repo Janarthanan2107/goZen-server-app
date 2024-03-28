@@ -1,14 +1,16 @@
-const express = require('express');
-const fs = require('fs');
-const path = require('path');
-const app = express();
-const configMiddleware = require('./config/middleware');
-const userRoutes = require('./routes/userRoutes');
-const authRoutes = require('./routes/authRoutes');
-const db = require('./config/dbConnection');
+import express from 'express';
+import { readFile } from 'fs/promises';
+import { join } from 'path';
+import configMiddleware from './config/middleware.js';
+import userRoutes from './routes/userRoutes.js';
+import authRoutes from './routes/authRoutes.js';
+import db from './config/dbConnection.js';
 
 // Load environment variables from .env file
-require('dotenv').config();
+import { config as dotenvConfig } from 'dotenv';
+dotenvConfig();
+
+const app = express();
 
 // Connect to database
 db.once('open', () => {
@@ -23,14 +25,14 @@ app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 
 // Read HTML file and send as response for base route
-app.get('/', (req, res) => {
-    fs.readFile(path.join(__dirname, 'index.html'), 'utf8', (err, data) => {
-        if (err) {
-            console.error('Error reading HTML file:', err);
-            return res.status(500).send('Internal Server Error');
-        }
+app.get('/', async (req, res) => {
+    try {
+        const data = await readFile(join(__dirname, 'index.html'), 'utf8');
         res.send(data);
-    });
+    } catch (err) {
+        console.error('Error reading HTML file:', err);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 // Error handling middleware

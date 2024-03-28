@@ -1,2 +1,2 @@
-const db = require('./config/dbConnection.js');
-module.exports = db;
+import dbConnection from './config/dbConnect.js';
+export default dbConnection;
