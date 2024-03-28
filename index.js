@@ -24,13 +24,11 @@ app.use('/api/auth', authRoutes);
 
 // Read HTML file and send as response for base route
 app.get('/', (req, res) => {
-    // Read the HTML file
     fs.readFile(path.join(__dirname, 'index.html'), 'utf8', (err, data) => {
         if (err) {
             console.error('Error reading HTML file:', err);
             return res.status(500).send('Internal Server Error');
         }
-        // Send the HTML content as response
         res.send(data);
     });
 });
