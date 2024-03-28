@@ -1,4 +1,6 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const app = express();
 const configMiddleware = require('./config/middleware');
 const userRoutes = require('./routes/userRoutes');
@@ -19,6 +21,19 @@ configMiddleware(app);
 // Define routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+
+// Read HTML file and send as response for base route
+app.get('/', (req, res) => {
+    // Read the HTML file
+    fs.readFile(path.join(__dirname, 'index.html'), 'utf8', (err, data) => {
+        if (err) {
+            console.error('Error reading HTML file:', err);
+            return res.status(500).send('Internal Server Error');
+        }
+        // Send the HTML content as response
+        res.send(data);
+    });
+});
 
 // Error handling middleware
 app.use((err, req, res, next) => {
