@@ -1,6 +1,7 @@
 import express from 'express';
 import { readFile } from 'fs/promises';
-import { join } from 'path';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 import configMiddleware from './config/middleware.js';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
@@ -23,6 +24,9 @@ configMiddleware(app);
 // Define routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
+
+// Get the directory name of the current module
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // Read HTML file and send as response for base route
 app.get('/', async (req, res) => {
