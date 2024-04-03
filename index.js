@@ -2,6 +2,7 @@ import express from 'express';
 import { readFile } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import bodyParser from "body-parser"
 import configMiddleware from './config/middleware.js';
 import userRoutes from './routes/userRoutes.js';
 import authRoutes from './routes/authRoutes.js';
@@ -20,7 +21,8 @@ db.once('open', () => {
 
 // Configure middleware
 configMiddleware(app);
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // Define routes
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
